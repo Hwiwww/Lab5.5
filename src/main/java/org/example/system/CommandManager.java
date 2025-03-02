@@ -1,7 +1,7 @@
 package org.example.system;
 
 import org.example.commands.*;
-import org.example.commands.Commands;
+import org.example.commands.Command;
 
 import java.util.HashMap;
 

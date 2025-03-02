@@ -2,10 +2,9 @@ package org.example.commands;
 
 import org.example.data.Dragon;
 import org.example.system.CollectionManager;
-import org.example.system.Console;
 import org.example.system.DragonGenerator;
 
-public class Insert extends Commands {
+public class Insert extends Command {
     public Insert(){
         super("insert");
     }
