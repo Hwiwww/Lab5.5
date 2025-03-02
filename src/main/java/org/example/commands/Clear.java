@@ -2,7 +2,7 @@ package org.example.commands;
 
 import org.example.system.CollectionManager;
 
-public class Clear extends Commands {
+public class Clear extends Command {
     public Clear() {
         super("clear");
     }
