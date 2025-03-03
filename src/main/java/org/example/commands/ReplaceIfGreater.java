@@ -12,6 +12,6 @@ public class ReplaceIfGreater extends Command{
 
     @Override
     public String getDescription() {
-        return "";
+        return "updates element by key if new bigger than element in collection with the same key";
     }
 }

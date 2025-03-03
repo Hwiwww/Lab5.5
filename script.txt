@@ -1,0 +1,8 @@
+show
+sum_of_age
+show
+info
+help
+filter_less_than_weight 5
+show
+min_by_coordinates

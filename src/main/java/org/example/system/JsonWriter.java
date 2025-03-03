@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 
 public class JsonWriter {
     public static void write() {
-        String fileName = "./data.json";
+        String fileName = "./dragons.json";
 
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()

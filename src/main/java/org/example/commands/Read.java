@@ -15,7 +15,7 @@ public class Read extends Command {
 
     @Override
     public String getDescription() {
-        return "";
+        return "reads data about collection from file";
     }
 }
 

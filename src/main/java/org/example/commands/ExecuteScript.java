@@ -10,7 +10,7 @@ import java.util.Scanner;
 import static org.example.system.CommandManager.commandList;
 
 public class ExecuteScript extends Command {
-    private static Deque<File> scriptsStack = new ArrayDeque<>();
+    private static Deque<String> scriptsStack = new ArrayDeque<>();
 
     public ExecuteScript() {
         super("execute_script");
@@ -19,14 +19,16 @@ public class ExecuteScript extends Command {
     @Override
     public void execute(String[] args) {
         File file = new File(args[0]);
+        String filePath = file.getAbsolutePath();
 
-        if (scriptsStack.contains(file)) {
+        if (scriptsStack.contains(filePath)) {
             System.out.println("Recursion detected");
+            return;
         }
 
         try {
             Scanner scanner = new Scanner(file);
-            scriptsStack.add(file);
+            scriptsStack.add(filePath);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] commandArguments = line.split(" ");
@@ -40,9 +42,10 @@ public class ExecuteScript extends Command {
                     System.err.println("Unknown command: " + lineCommand);
                 }
             }
-            scriptsStack.removeLast();
         } catch (FileNotFoundException e) {
             System.err.println("Unable to find the script file");
+        } finally {
+            scriptsStack.remove(filePath); // Убираем файл из стека после выполнения
         }
     }
 
