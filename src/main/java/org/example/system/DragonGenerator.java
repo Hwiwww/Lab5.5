@@ -61,14 +61,13 @@ public class DragonGenerator {
             speaking = readBoolean();
         }
         DragonType dragonType = null;
-        // String value;
         while (dragonType == null) {
             System.out.print("Write a dragon's type (WATER, UNDERGROUND, AIR, FIRE)");
             scanner.nextLine();
-            String value = readString().trim().toUpperCase(); // Приводим к верхнему регистру
+            String value = readString().trim().toUpperCase();
 
             try {
-                dragonType = DragonType.valueOf(value); // Проверяем, есть ли в ENUM
+                dragonType = DragonType.valueOf(value);
             } catch (IllegalArgumentException e) {
                 System.out.println(value + " is not an available dragon's type, try again: ");
             }
@@ -140,17 +139,13 @@ public class DragonGenerator {
 //        System.out.println("Write a number for dragon's type (1 - WATER, 2 - UNDERGROUND, 3 - AIR, 4 - FIRE)");
 //        int dragonTypeNumber;
         DragonType dragonType = null;
-        String vale;
-        while (!scanner.hasNextInt()) {
-            System.out.println("Invalid value, try again: ");
-            scanner.next();
-        }
         while (dragonType == null) {
             System.out.print("Write a dragon's type (WATER, UNDERGROUND, AIR, FIRE)");
-            String value = scanner.nextLine().trim().toUpperCase(); // Приводим к верхнему регистру
+            scanner.nextLine();
+            String value = readString().trim().toUpperCase();
 
             try {
-                dragonType = DragonType.valueOf(value); // Проверяем, есть ли в ENUM
+                dragonType = DragonType.valueOf(value);
             } catch (IllegalArgumentException e) {
                 System.out.println(value + " is not an available dragon's type, try again: ");
             }

@@ -3,7 +3,7 @@ package org.example.data;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Dragon {
+public class Dragon implements Comparable<Dragon> {
     private long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
@@ -156,5 +156,10 @@ public class Dragon {
                 ", caveDepth='" + cave.getDepth() + '\'' +
                 ", caveNumberOfTreasures='" + cave.getNumberOfTreasures() + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Dragon other) {
+        return Long.compare(age, other.age);
     }
 }
