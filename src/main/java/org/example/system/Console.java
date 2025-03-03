@@ -36,7 +36,7 @@ public class Console {
         CollectionManager collectionManager = new CollectionManager();
         FileManager fileManager = new FileManager();
         // DataReader reader = new DataReader();
-        String path = args[0];
+        // String path = args[0];
 
         try {
             System.out.println("Downloading data from file...");
