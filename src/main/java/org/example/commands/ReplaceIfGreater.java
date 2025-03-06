@@ -4,6 +4,8 @@ import org.example.data.Dragon;
 import org.example.system.CollectionManager;
 import org.example.system.DragonGenerator;
 
+import org.example.system.CollectionManager;
+
 public class ReplaceIfGreater extends Command{
     public ReplaceIfGreater(){
         super("replace_if_greater");

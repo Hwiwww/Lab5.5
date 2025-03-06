@@ -20,5 +20,15 @@
             <version>2.12.1</version>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId/>
+                <artifactId></artifactId>
+                <version></version>
+            </plugin>
+        </plugins>
+    </build>
+
 
 </project>
