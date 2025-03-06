@@ -13,10 +13,15 @@ import org.example.system.serializers.*;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Hashtable;
 import java.util.List;
+
+
 
 public class FileManager {
     public static void readFile() {
@@ -24,15 +29,23 @@ public class FileManager {
     }
 
     private static Hashtable<Long, Dragon> jsonReader() {
-        String path = System.getenv("MY_FILE_PATH");
+        String fileName = System.getenv("MY_FILE_PATH");
+        File file = new File(fileName);
+        Path path = file.toPath();
 
-        if (path == null) {
+        if (fileName == null) {
             System.out.println("Ошибка: Переменная окружения MY_FILE_PATH не задана!");
+        } else if (Files.notExists(path)) {
+            System.out.println("");
+        } else if (!Files.isRegularFile(path)) {
+            System.out.println("");
+        } else if (!Files.isReadable(path)) {
+            System.out.println("");
         }
 
         Hashtable<Long, Dragon> hashtable = new Hashtable<>();
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(path), StandardCharsets.UTF_8))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(fileName), StandardCharsets.UTF_8))) {
 
             Gson gson = new GsonBuilder().registerTypeAdapter(Dragon.class, new DragonDeserializer())
                     .registerTypeAdapter(Coordinates.class, new CoordinatesDeserializer())
