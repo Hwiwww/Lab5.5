@@ -3,7 +3,7 @@ package org.example.commands;
 import org.example.system.CollectionManager;
 
 public class SumOfAge extends Command {
-    public static long sumOfAges;
+    private long sumOfAges;
 
     public SumOfAge() {
         super("sumOfAge");
@@ -14,7 +14,7 @@ public class SumOfAge extends Command {
         System.out.println("sum of ages for all items in the collection: " + getSumOfAges());
     }
 
-    public static long getSumOfAges() {
+    private long getSumOfAges() {
         CollectionManager.getCollection().forEach((s, dragon) -> {
             sumOfAges = sumOfAges + dragon.getAge();
         });

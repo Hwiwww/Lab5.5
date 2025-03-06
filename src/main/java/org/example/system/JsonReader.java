@@ -9,6 +9,8 @@ import org.example.data.DragonType;
 import org.example.system.deserializers.*;
 import java.io.*;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.time.LocalDateTime;
 
 import java.util.*;
@@ -23,7 +25,7 @@ public class JsonReader {
 
         Hashtable<Long, Dragon> hashtable = new Hashtable<>();
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(path), "UTF-8"))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(path), StandardCharsets.UTF_8))) {
 
             Gson gson = new GsonBuilder().registerTypeAdapter(Dragon.class, new DragonDeserializer())
                     .registerTypeAdapter(Coordinates.class, new CoordinatesDeserializer())

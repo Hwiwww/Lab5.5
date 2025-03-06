@@ -18,7 +18,12 @@ import java.time.LocalDateTime;
 
 public class JsonWriter {
     public static void write() {
-        String fileName = "./dragons.json";
+          // String fileName = "./dragons.json";
+        String fileName = System.getenv("MY_FILE_PATH");
+
+        if (fileName == null) {
+            System.out.println("Ошибка: Переменная окружения MY_FILE_PATH не задана!");
+        }
 
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
@@ -30,7 +35,7 @@ public class JsonWriter {
                 .create();
 
         try (FileWriter writer = new FileWriter(fileName)) {
-            gson.toJson(CollectionManager.getCollection(), writer);
+            gson.toJson(CollectionManager.getCollection().values(), writer);
         } catch (IOException e) {
             System.err.println("Something went wrong while writing collection to file.");
         }

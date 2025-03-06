@@ -44,7 +44,7 @@ public class Console {
             // data_path = args[0];
             // System.out.println(TextColor.ANSI_BLUE + "Everything is OK." + TextColor.ANSI_RESET);
         } catch (Exception e) {
-            System.out.println("");
+            System.out.println(e.getMessage());
         }
 
         System.out.println("Welcome to app!");
