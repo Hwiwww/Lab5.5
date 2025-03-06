@@ -36,11 +36,11 @@ public class FileManager {
         if (fileName == null) {
             System.out.println("Ошибка: Переменная окружения MY_FILE_PATH не задана!");
         } else if (Files.notExists(path)) {
-            System.out.println("");
+            throw new RuntimeException("");
         } else if (!Files.isRegularFile(path)) {
-            System.out.println("");
+            throw new RuntimeException("");
         } else if (!Files.isReadable(path)) {
-            System.out.println("");
+            throw new RuntimeException("");
         }
 
         Hashtable<Long, Dragon> hashtable = new Hashtable<>();
