@@ -11,6 +11,9 @@ public class FilterLessThanWeight extends Command {
     @Override
     public void execute(String[] args) {
         try {
+            if (args.length == 0) {
+                throw new IllegalArgumentException("Error: No argument provided. Please specify a weight value.");
+            }
             Environment.getInstance().getCollectionManager().getCollection().forEach((key, dragon) -> {
                 int comparisonWeight = Integer.parseInt(args[0]);
                 if (dragon.getWeight() < comparisonWeight) {
