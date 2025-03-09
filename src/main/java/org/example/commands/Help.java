@@ -10,6 +10,7 @@ public class Help extends Command {
     public Help() {
         super("help");
     }
+
     @Override
     public void execute(String[] args) {
         Environment.getInstance().getCommandManager().getCommandList().forEach((s, command) -> {
