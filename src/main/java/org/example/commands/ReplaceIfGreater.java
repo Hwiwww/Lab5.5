@@ -5,6 +5,7 @@ import org.example.system.CollectionManager;
 import org.example.system.DragonGenerator;
 
 import org.example.system.CollectionManager;
+import org.example.system.Environment;
 
 public class ReplaceIfGreater extends Command{
     public ReplaceIfGreater(){
@@ -13,18 +14,28 @@ public class ReplaceIfGreater extends Command{
 
     @Override
     public void execute(String[] args) {
-        String key = args[0];
-        if (CollectionManager.getCollection().contains(key)) {
-            DragonGenerator dragonGenerator = new DragonGenerator();
-            Dragon dragon = new Dragon();
-            dragon.setAge(dragonGenerator.readAge());
-            if (CollectionManager.getCollection().get(key).compareTo(dragon) == 1) {
-                dragon = dragonGenerator.createDragon();
-                CollectionManager.getCollection().remove(key);
-                CollectionManager.add(dragon);
-            } else {
-                System.out.println("New dragon's age is less. Try again!");
+        try {
+            if (args.length == 0) {
+                throw new IllegalArgumentException("Error: No argument provided. Please specify a weight value.");
             }
+            String key = args[0];
+            CollectionManager manager = Environment.getInstance().getCollectionManager();
+            if (manager.getCollection().contains(key)) {
+                DragonGenerator dragonGenerator = Environment.getInstance().getDragonGenerator();
+                Dragon dragon = new Dragon();
+                dragon.setAge(dragonGenerator.readAge());
+                if (manager.getCollection().get(key).compareTo(dragon) == 1) {
+                    dragon = dragonGenerator.createDragon();
+                    manager.getCollection().remove(key);
+                    manager.add(dragon);
+                } else {
+                    System.out.println("New dragon's age is less. Try again!");
+                }
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Invalid argument. Please enter a valid integer.");
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
         }
     }
 

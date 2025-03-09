@@ -1,5 +1,6 @@
 package org.example.commands;
 
+import org.example.system.Environment;
 import org.example.system.FileManager;
 
 public class Save extends Command {
@@ -9,7 +10,7 @@ public class Save extends Command {
 
     @Override
     public void execute(String[] args) {
-        FileManager.saveToFile();
+        Environment.getInstance().getFileManager().saveToFile();
     }
 
     @Override

@@ -1,10 +1,11 @@
 package org.example.commands;
 
 import org.example.data.Dragon;
+import org.example.system.Environment;
 
 import java.util.Hashtable;
 
-import static org.example.system.CollectionManager.hashTable;
+
 
 public class Show extends Command {
     public Show() {
@@ -13,8 +14,8 @@ public class Show extends Command {
 
     @Override
     public void execute(String[] args) {
-        Hashtable<Long, Dragon> dragons = hashTable;
-        hashTable.forEach((k, v) -> System.out.println(v.toString()));
+        Hashtable<Long, Dragon> dragons = Environment.getInstance().getCollectionManager().getCollection();
+        dragons.forEach((k, v) -> System.out.println(v.toString()));
     }
 
     @Override

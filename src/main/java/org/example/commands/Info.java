@@ -2,6 +2,7 @@ package org.example.commands;
 
 import org.example.system.CollectionManager;
 import org.example.data.Dragon;
+import org.example.system.Environment;
 
 public class Info extends Command {
     public Info() {
@@ -10,10 +11,11 @@ public class Info extends Command {
 
     @Override
     public void execute(String[] args) {
-        System.out.println("collection type: " + CollectionManager.getCollection().getClass().getSimpleName());
+        CollectionManager manager = Environment.getInstance().getCollectionManager();
+        System.out.println("collection type: " + manager.getClass().getSimpleName());
         System.out.println("element type: " + Dragon.class.getSimpleName());
-        System.out.println("initialization date: " + CollectionManager.getInitializationDate());
-        System.out.println("amount of elements: " + CollectionManager.getCollection().size());
+        System.out.println("initialization date: " + manager.getInitializationDate());
+        System.out.println("amount of elements: " + manager.getCollection().size());
     }
 
     @Override

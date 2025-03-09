@@ -2,6 +2,7 @@ package org.example.commands;
 
 import org.example.data.Dragon;
 import org.example.system.CollectionManager;
+import org.example.system.Environment;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -18,13 +19,14 @@ public class MinByCoordinates extends Command {
     }
 
     public Dragon minByCoordinates() {
-        if (CollectionManager.getCollection().isEmpty()) {
+        CollectionManager manager = Environment.getInstance().getCollectionManager();
+        if (manager.getCollection().isEmpty()) {
             return null;
         } else {
             Comparator<Dragon> dragonComparator = Comparator
                     .comparing((Dragon d) -> d.getCoordinates().getX())
                     .thenComparing(d -> d.getCoordinates().getY());
-            Dragon min = Collections.min(CollectionManager.getCollection().values(), dragonComparator);
+            Dragon min = Collections.min(manager.getCollection().values(), dragonComparator);
             return min;
         }
     }

@@ -35,7 +35,7 @@ public class JsonWriter {
                 .create();
 
         try (FileWriter writer = new FileWriter(fileName)) {
-            gson.toJson(CollectionManager.getCollection().values(), writer);
+            gson.toJson(Environment.getInstance().getCollectionManager().getCollection().values(), writer);
         } catch (IOException e) {
             System.err.println("Something went wrong while writing collection to file.");
         }

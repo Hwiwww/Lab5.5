@@ -1,5 +1,7 @@
 package org.example.commands;
 
+import org.example.system.Environment;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayDeque;
@@ -35,8 +37,8 @@ public class ExecuteScript extends Command {
                 String lineCommand = commandArguments[0];
                 String[] arguments = Arrays.copyOfRange(commandArguments, 1, commandArguments.length);
 
-                if (commandList.containsKey(lineCommand)) { // либо через keySet().contains
-                    Command command = commandList.get(lineCommand);
+                if (Environment.getInstance().getCommandManager().getCommandList().containsKey(lineCommand)) { // либо через keySet().contains
+                    Command command = Environment.getInstance().getCommandManager().getCommandList().get(lineCommand);
                     command.execute(arguments);
                 } else {
                     System.err.println("Unknown command: " + lineCommand);

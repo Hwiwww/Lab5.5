@@ -1,6 +1,7 @@
 package org.example.commands;
 
 import org.example.system.CollectionManager;
+import org.example.system.Environment;
 
 public class FilterLessThanWeight extends Command {
     public FilterLessThanWeight() {
@@ -10,7 +11,7 @@ public class FilterLessThanWeight extends Command {
     @Override
     public void execute(String[] args) {
         try {
-            CollectionManager.getCollection().forEach((key, dragon) -> {
+            Environment.getInstance().getCollectionManager().getCollection().forEach((key, dragon) -> {
                 int comparisonWeight = Integer.parseInt(args[0]);
                 if (dragon.getWeight() < comparisonWeight) {
                     System.out.println(dragon.toString());

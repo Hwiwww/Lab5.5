@@ -1,6 +1,7 @@
 package org.example.commands;
 
 import org.example.system.CollectionManager;
+import org.example.system.Environment;
 
 public class Remove extends Command{
     public Remove() {
@@ -9,7 +10,7 @@ public class Remove extends Command{
 
     @Override
     public void execute(String[] args) {
-        CollectionManager.getCollection().remove(args[0]);
+        Environment.getInstance().getCollectionManager().getCollection().remove(Long.parseLong(args[0]));
         System.out.println("you have removed an item from the collection.");
     }
 

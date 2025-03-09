@@ -5,38 +5,14 @@ import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import static org.example.system.CommandManager.commandList;
-
 public class Console {
-    private static Console console;
-    Scanner scanner;
-
-    public static Console getInstance() {
-        if(console == null){
-            console = new Console();
-        }
-        return console;
-    }
+    private Scanner scanner;
 
 
-    public Scanner getScanner() {
-        return scanner;
-    }
-
-
-    // private final Scanner scanner;
-
-//    public Console(Scanner scanner) {
-//        this.scanner = scanner;
-//    }
 
     public void start(InputStream input, String[] args) {
         scanner = new Scanner(input);
-        CommandManager commandManager = new CommandManager();
-        CollectionManager collectionManager = new CollectionManager();
-        FileManager fileManager = new FileManager();
-        // DataReader reader = new DataReader();
-        // String path = args[0];
+        CommandManager commandManager = Environment.getInstance().getCommandManager();
 
         try {
             System.out.println("Downloading data from file...");
@@ -55,8 +31,8 @@ public class Console {
             if (commandArgs.length >= 1) {
                 String commandLine = commandArgs[0];
                 String[] arguments = Arrays.copyOfRange(commandArgs, 1, commandArgs.length);
-                if (commandList.containsKey(commandLine)) { // либо через keySet().contains
-                    Command command = commandList.get(commandLine);
+                if (commandManager.getCommandList().containsKey(commandLine)) { // либо через keySet().contains
+                    Command command = commandManager.getCommandList().get(commandLine);
                     try {
                         command.execute(arguments);
                     } catch (IllegalArgumentException e) {

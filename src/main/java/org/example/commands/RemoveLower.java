@@ -1,6 +1,7 @@
 package org.example.commands;
 
 import org.example.system.CollectionManager;
+import org.example.system.Environment;
 
 public class RemoveLower extends Command {
     public RemoveLower() {
@@ -13,12 +14,13 @@ public class RemoveLower extends Command {
             if (args.length == 0) {
                 throw new IllegalArgumentException("Error: No argument provided. Please specify a weight value.");
             }
-            CollectionManager.getCollection().forEach((w, dragon) -> {
+            CollectionManager manager = Environment.getInstance().getCollectionManager();
+            manager.getCollection().forEach((w, dragon) -> {
                 if (dragon.getWeight() < Integer.parseInt(args[0])) {
-                    CollectionManager.getCollection().remove(w);
+                    manager.getCollection().remove(w);
                 }
             });
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.out.println("Error: Invalid argument. Please enter a valid integer.");
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());

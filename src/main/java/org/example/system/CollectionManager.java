@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.Hashtable;
 
 public class CollectionManager {
-    public static Hashtable<Long, Dragon> hashTable;
+    public Hashtable<Long, Dragon> hashTable;
     private static LocalDate date;
 
 
@@ -15,12 +15,12 @@ public class CollectionManager {
         hashTable = new Hashtable<>();
     }
 
-    public static Hashtable<Long, Dragon> getCollection() {
+    public Hashtable<Long, Dragon> getCollection() {
         return hashTable;
     }
 
     // Добавление нового дракона
-    public static void add(Dragon dragon) {
+    public void add(Dragon dragon) {
         if (hashTable == null) {
             hashTable = new Hashtable<>();
         }

@@ -14,7 +14,6 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,11 +24,11 @@ import java.util.List;
 
 public class FileManager {
     public static void readFile() {
-        CollectionManager.getCollection().putAll(jsonReader());
+        Environment.getInstance().getCollectionManager().getCollection().putAll(jsonReader());
     }
 
     private static Hashtable<Long, Dragon> jsonReader() {
-        String fileName = System.getenv("MY_FILE_PATH");
+        String fileName = Environment.getInstance().getPath();
         File file = new File(fileName);
         Path path = file.toPath();
 
@@ -77,7 +76,7 @@ public class FileManager {
 
     private static void jsonWriter() {
         // String fileName = "./dragons.json";
-        String fileName = System.getenv("MY_FILE_PATH");
+        String fileName = Environment.getInstance().getPath();
 
         if (fileName == null) {
             System.out.println("Ошибка: Переменная окружения MY_FILE_PATH не задана!");
@@ -93,7 +92,7 @@ public class FileManager {
                 .create();
 
         try (FileWriter writer = new FileWriter(fileName)) {
-            gson.toJson(CollectionManager.getCollection().values(), writer);
+            gson.toJson(Environment.getInstance().getCollectionManager().getCollection().values(), writer);
         } catch (IOException e) {
             System.err.println("Something went wrong while writing collection to file.");
         }

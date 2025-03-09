@@ -3,6 +3,7 @@ package org.example.commands;
 import org.example.data.Dragon;
 import org.example.system.CollectionManager;
 import org.example.system.DragonGenerator;
+import org.example.system.Environment;
 
 public class Insert extends Command {
     public Insert(){
@@ -11,9 +12,9 @@ public class Insert extends Command {
 
     @Override
     public void execute(String[] args) {
-        DragonGenerator dragonGenerator = new DragonGenerator();
+        DragonGenerator dragonGenerator = Environment.getInstance().getDragonGenerator();
         Object dragon = dragonGenerator.createDragon();
-        CollectionManager.add((Dragon) dragon);
+        Environment.getInstance().getCollectionManager().add((Dragon) dragon);
         System.out.println("Element was added to collection");
     }
 

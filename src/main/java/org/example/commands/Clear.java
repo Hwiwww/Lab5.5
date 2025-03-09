@@ -1,6 +1,7 @@
 package org.example.commands;
 
 import org.example.system.CollectionManager;
+import org.example.system.Environment;
 
 public class Clear extends Command {
     public Clear() {
@@ -9,7 +10,7 @@ public class Clear extends Command {
 
     @Override
     public void execute(String[] args) {
-        CollectionManager.getCollection().clear();
+        Environment.getInstance().getCollectionManager().getCollection().clear();
         System.out.println("Collection is cleared.");
     }
 

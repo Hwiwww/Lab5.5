@@ -1,6 +1,7 @@
 package org.example.commands;
 
 import org.example.system.CollectionManager;
+import org.example.system.Environment;
 
 public class SumOfAge extends Command {
     private long sumOfAges;
@@ -15,7 +16,7 @@ public class SumOfAge extends Command {
     }
 
     private long getSumOfAges() {
-        CollectionManager.getCollection().forEach((s, dragon) -> {
+        Environment.getInstance().getCollectionManager().getCollection().forEach((s, dragon) -> {
             sumOfAges = sumOfAges + dragon.getAge();
         });
         return sumOfAges;
