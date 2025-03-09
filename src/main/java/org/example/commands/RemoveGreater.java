@@ -1,7 +1,11 @@
 package org.example.commands;
 
+import org.example.data.Dragon;
 import org.example.system.CollectionManager;
 import org.example.system.Environment;
+
+import java.util.Iterator;
+import java.util.Map;
 
 public class RemoveGreater extends Command {
     public RemoveGreater() {
@@ -14,12 +18,17 @@ public class RemoveGreater extends Command {
             if (args.length == 0) {
                 throw new IllegalArgumentException("Error: No argument provided. Please specify a weight value.");
             }
+            int maxWeight = Integer.parseInt(args[0]);
             CollectionManager manager = Environment.getInstance().getCollectionManager();
-            manager.getCollection().forEach((h, dragon) -> {
-                if (dragon.getWeight() > Integer.parseInt(args[0])) {
-                    manager.getCollection().remove(h);
+            Iterator<Map.Entry<Long, Dragon>> iterator = manager.getCollection().entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry<Long, Dragon> entry = iterator.next();
+                if (entry.getValue().getWeight() > maxWeight) {
+                    iterator.remove();
                 }
-            });
+            }
+            System.out.println("New collection: ");
+            manager.getCollection().forEach((id, dragon) -> System.out.println(dragon.toString()));
         } catch (NumberFormatException e) {
             System.out.println("Error: Invalid argument. Please enter a valid integer.");
         } catch (IllegalArgumentException e) {
